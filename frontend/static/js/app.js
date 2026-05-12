@@ -6,6 +6,18 @@ let history = [];
 // ── Boot ─────────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   loadExamples();
+  // Load persisted history from backend
+  (async function loadHistory() {
+    try {
+      const res = await fetch(API + "/api/v1/scans");
+      if (res.ok) {
+        const list = await res.json();
+        // convert to local history format
+        history = list.map(i => ({ time: new Date(i.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), preview: i.preview, score: i.score, level: i.level, verdict: i.verdict }));
+        renderHistory();
+      }
+    } catch (e) { /* ignore */ }
+  })();
   document.getElementById("msg-url").addEventListener("keydown", e => {
     if (e.key === "Enter") analyze();
   });
