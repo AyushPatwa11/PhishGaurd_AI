@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard AI</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-icon">🛡</div>
+  <h1>PhishGuard AI <span>Real-Time Phishing Detection</span></h1>
+  <div class="badge-model">Random Forest · 19 Features · XAI</div>
+</header>
+
+<main>
+
+  <!-- ── Input ── -->
+  <div class="card full-width">
+    <div class="card-title">Analyze Message</div>
+    <div class="examples-row" id="examples-row">
+      <span class="examples-label">Try:</span>
+    </div>
+    <div class="input-grid">
+      <div>
+        <label for="msg-text">Email / Message Text</label>
+        <textarea id="msg-text" placeholder="Paste the email body or message here…"></textarea>
+      </div>
+      <div>
+        <label for="msg-url">URL found in message (optional)</label>
+        <input type="text" id="msg-url" placeholder="https://example.com/suspicious-link">
+        <div class="hint-box">
+          💡 Paste any link from the message. The system checks domain structure,
+          TLD reputation, subdomains, and special characters.
+        </div>
+      </div>
+    </div>
+    <button class="analyze-btn" id="analyze-btn" onclick="analyze()">
+      <span id="btn-label">Analyze for Phishing</span>
+    </button>
+  </div>
+
+  <!-- ── Score ── -->
+  <div class="card">
+    <div class="card-title">Risk Score</div>
+    <div id="score-content">
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <div>Submit a message to see the risk analysis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tactics ── -->
+  <div class="card">
+    <div class="card-title">Psychology Tactics Detected</div>
+    <div id="tactics-content">
+      <div class="empty-state">
+        <div class="empty-icon">🧠</div>
+        <div>Manipulation tactics will appear here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── XAI Features ── -->
+  <div class="card">
+    <div class="card-title">Top Risk Signals (XAI)</div>
+    <div id="features-content">
+      <div class="empty-state">
+        <div class="empty-icon">📊</div>
+        <div>Feature breakdown will appear here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Reasons ── -->
+  <div class="card">
+    <div class="card-title">Why was this flagged?</div>
+    <div id="reasons-content">
+      <div class="empty-state" style="height:100px">
+        <div>Plain-language explanation will appear here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── History ── -->
+  <div class="card full-width">
+    <div class="card-title">Analysis History</div>
+    <div id="history-content">
+      <div class="empty-state" style="height:80px">
+        <div>Analyses will appear here</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
