@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 // For local development the FastAPI inference service runs on port 8001.
 const API = "http://127.0.0.1:8001";
+=======
+const API = "";   // empty = same origin (Flask serves both)
+>>>>>>> master
 
 let history = [];
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   loadExamples();
+<<<<<<< HEAD
   // Load persisted history from backend
   (async function loadHistory() {
     try {
@@ -18,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (e) { /* ignore */ }
   })();
+=======
+>>>>>>> master
   document.getElementById("msg-url").addEventListener("keydown", e => {
     if (e.key === "Enter") analyze();
   });
@@ -26,7 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // ── Load example buttons ──────────────────────────────────────────────────────
 async function loadExamples() {
   try {
+<<<<<<< HEAD
     const res  = await fetch(API + "/api/v1/examples");
+=======
+    const res  = await fetch(API + "/api/examples");
+>>>>>>> master
     const list = await res.json();
     const row  = document.getElementById("examples-row");
     list.forEach(ex => {
@@ -50,7 +61,11 @@ async function analyze() {
 
   setLoading(true);
   try {
+<<<<<<< HEAD
     const res  = await fetch(API + "/api/v1/predict", {
+=======
+    const res  = await fetch(API + "/api/predict", {
+>>>>>>> master
       method:  "POST",
       headers: { "Content-Type": "application/json" },
       body:    JSON.stringify({ text, url }),
@@ -59,6 +74,7 @@ async function analyze() {
     const data = await res.json();
     renderResults(data, text, url);
     addHistory(data, text, url);
+<<<<<<< HEAD
     } catch (e) {
       document.getElementById("score-content").innerHTML = `
         <div class="empty-state" style="color:var(--red)">
@@ -66,6 +82,15 @@ async function analyze() {
           <div>Could not reach backend</div>
           <div style="font-size:12px">Make sure the FastAPI service is running: <code>python backend/run_fastapi.py</code></div>
         </div>`;
+=======
+  } catch (e) {
+    document.getElementById("score-content").innerHTML = `
+      <div class="empty-state" style="color:var(--red)">
+        <div style="font-size:22px">⚠️</div>
+        <div>Could not reach backend</div>
+        <div style="font-size:12px">Make sure Flask is running: <code>python backend/app.py</code></div>
+      </div>`;
+>>>>>>> master
   } finally {
     setLoading(false);
   }
