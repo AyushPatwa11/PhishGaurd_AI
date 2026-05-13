@@ -7,3 +7,18 @@ venv/
 *.egg-info/
 dist/
 .DS_Store
+# VS Code workspace and state
+.vscode/
+.vscode/*
+*.code-workspace
+# VS Code workspace storage (user-specific)
+.vscode-server/
+/.vscode-server
+# VS Code local state files
+state.vscdb
+state.vscdb.backup
+RGStats.db
+# JetBrains and other IDEs
+.idea/
+# OS thumbnails
+Thumbs.db
