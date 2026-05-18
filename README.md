@@ -1,4 +1,4 @@
-# PhishGuard AI
+## PhishGuard AI
 
 AI-powered phishing detector. Flask serves both the API and the frontend — no CORS, no separate dev servers, no build step.
 
