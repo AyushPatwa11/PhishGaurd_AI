@@ -1,102 +1,105 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Shield.png" alt="PhishGuard Shield" width="100" />
+  <img src="https://media.giphy.com/media/V81XE0wF8a1kP9T2kF/giphy.gif" alt="Hacker typing" width="200" />
   <br>
-  <h1>🛡️ PhishGuard AI <br> <span style="font-size: 20px; color: #7c6df0;">Next-Gen Threat Intelligence & Behavioral Phishing Detection</span></h1>
+  <h1>🎣 PhishGuard AI <br> <span style="font-size: 18px; color: #7c6df0;">Because trusting every email is a terrible idea.</span></h1>
   
   <p>
-    <strong>Zero-Day Phishing Detection Powered by Explainable AI (XAI) and Live Threat Feeds.</strong>
+    <strong>A shockingly smart, Glassmorphism-dripped AI that catches scammers before they catch your bank details.</strong>
   </p>
 
   <p>
-    <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-    <img src="https://img.shields.io/badge/Flask-API-black?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
-    <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Sklearn">
-    <img src="https://img.shields.io/badge/UI-Glassmorphism-7c6df0?style=for-the-badge" alt="UI">
+    <a href="https://python.org"><img src="https://img.shields.io/badge/Powered%20by-Python%20%26%20Flask-black?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
+    <a href="https://scikit-learn.org"><img src="https://img.shields.io/badge/Brain-Scikit--Learn-orange?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Sklearn"></a>
+    <img src="https://img.shields.io/badge/Vibe-Immaculate-7c6df0?style=for-the-badge" alt="Vibe">
   </p>
 </div>
 
 <br>
 
-## ✨ Interactive & Animated UI
-PhishGuard isn't just a backend engine—it features a stunning, state-of-the-art **Glassmorphism Single-Page Application (SPA)** that visualizes threats in real-time.
+## 🛑 Stop Right There, Scammer!
+Ever looked at an email from your "CEO" asking for $50,000 in iTunes gift cards and thought, *"Hmm, seems legit"*? 
 
-* **Sleek Micro-Animations**: Smoothly staggered slide-ins, pulsing threat indicators, and dynamic progress bars.
-* **Live Global Threat Map**: A beautifully rendered Leaflet.js map tracking real Botnet C2 servers globally, complete with a randomized auto-flight camera and live intercept logs.
-* **Responsive Routing**: Instant page switching between Home, Dashboard, Map, History, and Education Center without ever reloading the browser.
+**PhishGuard AI** is here to save you from yourself. We don't just say "this looks bad"—we use **Explainable AI (XAI)** to tell you exactly *why* it's bad. Oh, and we trace the scammer's IP and drop a pinpoint on a gorgeous 3D Live Threat Map. Take that, cybercriminals! 🥷💥
 
 ---
 
-## 🚀 Core Features
+## ✨ Features That Make You Go "Whoa"
 
-### 🧠 1. Explainable AI Engine (XAI)
-* **19-Point Feature Extraction**: Extracts both structural URL anomalies (e.g., suspicious TLDs, raw IPs) and semantic text manipulations (e.g., CEO fraud, urgency, fear tactics).
-* **Random Forest Classifier**: Analyzes the extracted vectors and computes a deterministic threat probability.
-* **Transparent Scoring**: Displays the top features that contributed to the score alongside real-world psychological manipulation tactics (Authority, Scarcity, Fear).
+<details>
+<summary><b>👀 The "Glassmorphism" UI</b> <i>(Click to expand!)</i></summary>
+<br>
+We didn't just build a security tool; we built a futuristic command center. Expect smooth micro-animations, pulsing threat indicators, and dynamic progress bars that make you feel like you're hacking the mainframe in a sci-fi movie.
+</details>
 
-### 🌍 2. Live Global Threat Map & IP Tracking
-* **Real Threat Data**: Consumes live threat feeds to plot active Botnet Command & Control servers.
-* **Target Geolocation**: Analyzes a suspicious URL in the dashboard, resolves its underlying IP, and instantly traces it to a physical city and country.
-* **"Track on Map" 🎯**: One-click tracking automatically flies the map camera to the attacker's physical coordinates and drops a red-alert pin!
+<details>
+<summary><b>🧠 Big Brain AI (Explainable ML)</b> <i>(Click to expand!)</i></summary>
+<br>
+Instead of a black-box "trust me bro" score, our Random Forest classifier breaks down the threat using 19 distinct features. It catches structural anomalies (like raw IP addresses) and psychological manipulation tactics (Urgency, Fear, Authority).
+</details>
 
-### 📥 3. History & Export Capabilities
-* **Session Memory**: Auto-saves every scan locally for easy review.
-* **One-Click Exports**: Download raw CSV logs of your history, or generate structured text-based Threat Reports directly from the dashboard.
+<details>
+<summary><b>🌍 Live Threat Map Auto-Flight 🛫</b> <i>(Click to expand!)</i></summary>
+<br>
+Drop a sketchy URL into the dashboard. Watch as our backend resolves the IP, and the frontend instantly swoops across a beautiful Leaflet.js globe to drop a giant red pin exactly where the server is located. <i>*pew pew*</i> 🎯
+</details>
 
 ---
 
-## 🛠️ Architecture
+## 🛠️ The Tech Sauce
 
-A hyper-efficient, unified stack without the overhead of heavy JS frameworks:
+We kept it ridiculously lightweight. No crazy build steps. No Webpack configuration tears. Just pure, unadulterated Python and Vanilla JS magic.
 
 ```mermaid
 graph TD;
-    A[Glassmorphism UI] -->|REST API| B(Flask App Engine)
-    B --> C{Feature Extractor}
-    C -->|URL Structural Check| D[Regex & Pattern Matching]
-    C -->|Semantic Check| E[NLP Keyword Analysis]
-    D --> F[Random Forest ML Model]
+    A[Sleek Glassmorphism UI 💎] -->|REST API| B(Flask App Engine 🚂)
+    B --> C{The Feature Extractor 🕵️‍♂️}
+    C -->|Sniffing URLs| D[Regex Magic ✨]
+    C -->|Reading Minds| E[NLP Keyword Analysis 🧠]
+    D --> F[Random Forest ML 🌲]
     E --> F
-    F --> G[Explainable Breakdown]
+    F --> G[Explainable Breakdown 📊]
     G --> A
 ```
 
 ---
 
-## 💻 Installation & Setup
+## 🚀 How to Launch This Bad Boy
 
-PhishGuard AI serves both the robust API and the frontend directly through Flask. No Webpack, no NPM installs required!
+You're 3 commands away from feeling like an elite cybersecurity analyst. 
 
-### 1. Clone & Enter
+### 1. Grab the Code
 ```bash
 git clone https://github.com/AyushPatwa11/PhishGaurd_AI.git
 cd PhishGaurd_AI/backend
 ```
 
-### 2. Install Dependencies
+### 2. Fuel the Engine
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Launch the Engine
+### 3. Ignite! 🚀
 ```bash
 python app.py
 ```
-*Open **`http://localhost:5000`** in your browser and prepare to be amazed!*
+👉 Open **`http://localhost:5000`** in your browser and start interrogating suspicious links!
 
 ---
 
-## 📡 API Reference
+## 🤖 Talk to the API (For the Nerds)
 
-You can interact with the engine headlessly:
+Don't want to use the UI? Fine. Be that way. Our REST API is ready for your scripts.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/predict` | Submit `{"text": "...", "url": "..."}` for full XAI breakdown and IP geolocation. |
-| `GET` | `/api/examples` | Fetch real-world template scenarios (CEO Fraud, KYC Scams, Safe Corporate Emails). |
-| `GET` | `/api/live-threats`| Get live Botnet C2 server coordinates (supports `scope=near_me` / `global`). |
+| Method | Endpoint | What it does |
+|--------|----------|--------------|
+| `POST` | `/api/predict` | Feed it `{text, url}` and get a terrifyingly accurate breakdown of the scam. |
+| `GET` | `/api/examples` | Bored? Get a list of mock CEO fraud and delivery scams to play with. |
+| `GET` | `/api/live-threats`| Gives you live coordinates of Botnet C2 servers. Great for party tricks. |
 
 ---
 
 <div align="center">
-  <i>Built with ❤️ by AyushPatwa11 to make the web a safer place.</i>
+  <img src="https://media.giphy.com/media/l41Yl2CVK4HEnG424/giphy.gif" alt="Mic Drop" width="150" />
+  <br><br>
+  <i>Crafted with excessive caffeine and ❤️ by <a href="https://github.com/AyushPatwa11">AyushPatwa11</a>.</i>
 </div>
