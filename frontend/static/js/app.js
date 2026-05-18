@@ -4,6 +4,7 @@ let history = [];
 
 // ── Boot & Routing ────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  runCinematicIntro();
   loadExamples();
   setupNavigation();
   
@@ -437,4 +438,61 @@ function stopThreatFeed() {
     clearInterval(threatFeedInterval);
     threatFeedInterval = null;
   }
+}
+
+// ── Cinematic Loading Splash & Logo Merger ────────────────────────────────────
+function runCinematicIntro() {
+  const splash = document.getElementById("splash-screen");
+  const progress = document.getElementById("splash-progress");
+  const subtitle = document.getElementById("splash-subtitle");
+  const title = document.getElementById("splash-title");
+  const iconContainer = document.getElementById("splash-icon-container");
+
+  if (!splash) return;
+
+  // Reset
+  progress.style.width = "0%";
+
+  // Sequence Timeline
+  
+  // PHASE 1 (0.0s - 1.2s): Hook/Phishing detection focus
+  setTimeout(() => {
+    iconContainer.className = "icon-phase-hook";
+    subtitle.textContent = "Scanning threat vectors & hooks...";
+    progress.style.width = "25%";
+  }, 100);
+
+  // PHASE 2 (1.2s - 2.4s): AI Spark focus
+  setTimeout(() => {
+    iconContainer.className = "icon-phase-ai";
+    subtitle.textContent = "Deploying cognitive neural model...";
+    progress.style.width = "50%";
+  }, 1300);
+
+  // PHASE 3 (2.4s - 3.6s): Shield focus
+  setTimeout(() => {
+    iconContainer.className = "icon-phase-shield";
+    subtitle.textContent = "Establishing protective boundaries...";
+    progress.style.width = "75%";
+  }, 2500);
+
+  // PHASE 4 (3.6s - 4.4s): Morph / Merger phase (Lock-in elements)
+  setTimeout(() => {
+    iconContainer.className = "icon-phase-merge";
+    subtitle.textContent = "Integrating components... Threat Shield Active!";
+    progress.style.width = "95%";
+    title.classList.add("show");
+  }, 3700);
+
+  // PHASE 5 (4.4s - 5.0s): Flash lock & complete
+  setTimeout(() => {
+    iconContainer.classList.add("flash-effect");
+    progress.style.width = "100%";
+    subtitle.textContent = "System Secured. Welcome to PhishGuard AI.";
+  }, 4400);
+
+  // PHASE 6 (5.0s - 5.8s): Fade out
+  setTimeout(() => {
+    splash.classList.add("fade-out");
+  }, 5000);
 }

@@ -10,6 +10,53 @@
 </head>
 <body>
 
+  <!-- Cinematic Splash Screen / Intro Animation -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <div id="splash-icon-container">
+        <svg id="splash-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="splashShieldGrad" x1="18" y1="12" x2="82" y2="82" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#7c6df0" />
+              <stop offset="100%" stop-color="#c471ed" />
+            </linearGradient>
+            <linearGradient id="splashHookGrad" x1="32" y1="30" x2="56" y2="62" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00f2fe" />
+              <stop offset="100%" stop-color="#4facfe" />
+            </linearGradient>
+            <linearGradient id="splashSparkGrad" x1="38" y1="32" x2="50" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ff007f" />
+              <stop offset="100%" stop-color="#ff758c" />
+            </linearGradient>
+            <filter id="splashGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Shield Component (Initially Hidden/Animated) -->
+          <path id="splash-shield" d="M 50 12 L 82 22 C 82 52, 50 78, 50 82 C 50 78, 18 52, 18 22 Z" stroke="url(#splashShieldGrad)" stroke-width="6" stroke-linejoin="round" fill="rgba(124, 109, 240, 0.03)" />
+
+          <!-- Hook Component (Initially Hidden/Animated) -->
+          <path id="splash-hook" d="M 56 30 L 56 48 A 10 10 0 0 1 46 58 A 10 10 0 0 1 36 48 L 36 43" stroke="url(#splashHookGrad)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          
+          <!-- AI Spark Component (Initially Hidden/Animated) -->
+          <path id="splash-spark" d="M 46 28 Q 46 33 41 33 Q 46 33 46 38 Q 46 33 51 33 Q 46 33 46 28 Z" fill="url(#splashSparkGrad)" filter="url(#splashGlow)" />
+        </svg>
+      </div>
+      <h1 id="splash-title">PhishGuard <span class="gradient-text">AI</span></h1>
+      <p id="splash-subtitle">Initializing secure layers...</p>
+      
+      <!-- Premium Progress Bar -->
+      <div class="splash-progress-track">
+        <div class="splash-progress-bar" id="splash-progress"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Animated Background -->
   <div class="bg-animation">
     <div class="blob blob-1"></div>
@@ -21,7 +68,37 @@
 <!-- Navigation Sidebar -->
 <nav class="sidebar">
   <div class="sidebar-header">
-    <div class="logo-icon">🛡</div>
+    <div class="logo-icon">
+      <svg class="phishguard-logo-clean" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+        <defs>
+          <linearGradient id="shieldGrad" x1="18" y1="12" x2="82" y2="82" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7c6df0" />
+            <stop offset="100%" stop-color="#c471ed" />
+          </linearGradient>
+          <linearGradient id="hookGrad" x1="32" y1="30" x2="56" y2="62" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#00f2fe" />
+            <stop offset="100%" stop-color="#4facfe" />
+          </linearGradient>
+          <linearGradient id="sparkGrad" x1="38" y1="32" x2="50" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ff007f" />
+            <stop offset="100%" stop-color="#ff758c" />
+          </linearGradient>
+          <filter id="cleanGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- Shield Outline -->
+        <path d="M 50 12 L 82 22 C 82 52, 50 78, 50 82 C 50 78, 18 52, 18 22 Z" stroke="url(#shieldGrad)" stroke-width="6" stroke-linejoin="round" fill="rgba(124, 109, 240, 0.05)" />
+        <!-- Stylized Hook -->
+        <path d="M 56 30 L 56 48 A 10 10 0 0 1 46 58 A 10 10 0 0 1 36 48 L 36 43" stroke="url(#hookGrad)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <!-- AI Spark -->
+        <path d="M 46 28 Q 46 33 41 33 Q 46 33 46 38 Q 46 33 51 33 Q 46 33 46 28 Z" fill="url(#sparkGrad)" filter="url(#cleanGlow)" />
+      </svg>
+    </div>
     <h2>PhishGuard</h2>
   </div>
   <ul class="nav-links">
