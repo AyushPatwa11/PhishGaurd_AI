@@ -63,6 +63,14 @@ Instantly download comprehensive threat analysis reports with a single click. Ex
 Immerse yourself completely into a digital command center. Includes background cyber-synth operations music and interactive sound effects loops with quick mute/volume sliders on the settings tab.
 </details>
 
+<details>
+<summary><b>😈 The Sassy & Naughty "Gaurdian Devil" Chatbot 🔥</b> <i>(Click to expand!)</i></summary>
+<br>
+Say hello to your new favorite digital stalker! The Gaurdian Devil is a pinned floating chatbot with glowing red horns wiggling on hover. It represents a highly customizable local intelligence engine that answers perfectly about the site's Leaflet mapping, audio systems, and Random Forest classifier—while delivering hilarious, sassy, and mischievously naughty roasts to literally any message you throw at it.
+<br><br>
+<img src="C:/Users/HP/.gemini/antigravity/brain/8c847944-fbd7-4b2f-8b47-8a9120543d7c/chatbot_messages_verification_1779125282270.png" alt="Gaurdian Devil Sassy Chat interface" width="100%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
+</details>
+
 ---
 
 ## 🛠️ The Tech Sauce
@@ -115,6 +123,32 @@ Don't want to use the UI? Fine. Be that way. Our REST API is ready for your scri
 | `POST` | `/api/predict` | Feed it `{text, url}` and get a terrifyingly accurate breakdown of the scam. |
 | `GET` | `/api/examples` | Bored? Get a list of mock CEO fraud and delivery scams to play with. |
 | `GET` | `/api/live-threats`| Gives you live coordinates of Botnet C2 servers. Great for party tricks. |
+
+---
+
+## 🚀 Production Deployment on Render
+
+This repository is pre-configured with **Render Blueprint specifications (`render.yaml`)**, allowing you to deploy the unified full-stack application (both the Python Flask AI backend and the Glassmorphism static frontend) in just **three simple steps**:
+
+### 1. Push Your Code
+Ensure all recent updates are pushed to your GitHub repository:
+```bash
+git add .
+git commit -m "chore: add render.yaml blueprints and requirements updates"
+git push
+```
+
+### 2. Connect to Render
+1. Go to the [Render Dashboard](https://dashboard.render.com).
+2. Click **New +** at the top right and select **Blueprint**.
+3. Select your GitHub repository (`AyushPatwa11/PhishGaurd_AI`).
+
+### 3. Deploy!
+1. Render will automatically parse the `render.yaml` file.
+2. Click **Apply** to trigger the build.
+3. Render will install all `scikit-learn`, `numpy`, and `flask` dependencies, build the environment, and spin up a high-performance **Gunicorn WSGI web service** automatically!
+
+🎉 *Your live, zero-day threat intelligence command center will be up and running on a public `.onrender.com` URL within minutes!*
 
 ---
 

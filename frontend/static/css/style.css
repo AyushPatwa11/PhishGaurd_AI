@@ -727,3 +727,312 @@ input:checked + .slider:before { transform: translateX(20px); }
   50% { filter: brightness(2) drop-shadow(0 0 30px #ffffff); }
   100% { filter: brightness(1) drop-shadow(0 0 20px rgba(124, 109, 240, 0.4)); }
 }
+
+/* ── Gaurdian Devil Sassy Chatbot ── */
+#devil-chat-launcher {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  background: radial-gradient(circle, #ff2a5f 0%, #7c6df0 100%);
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(255, 42, 95, 0.4), 0 0 40px rgba(124, 109, 240, 0.2);
+  cursor: pointer;
+  z-index: 9998;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+#devil-chat-launcher:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 30px rgba(255, 42, 95, 0.7), 0 0 60px rgba(124, 109, 240, 0.5);
+}
+
+#devil-chat-launcher .chat-icon {
+  font-size: 24px;
+  user-select: none;
+}
+
+/* Devil Horns */
+.devil-horns-left, .devil-horns-right {
+  position: absolute;
+  top: -6px;
+  width: 10px;
+  height: 12px;
+  background: #ff2a5f;
+  border-radius: 50% 50% 0 0;
+  transition: transform 0.3s ease;
+}
+
+.devil-horns-left {
+  left: 10px;
+  transform: rotate(-35deg) skewX(-15deg);
+  box-shadow: -2px 0 10px rgba(255, 42, 95, 0.8);
+}
+
+.devil-horns-right {
+  right: 10px;
+  transform: rotate(35deg) skewX(15deg);
+  box-shadow: 2px 0 10px rgba(255, 42, 95, 0.8);
+}
+
+#devil-chat-launcher:hover .devil-horns-left {
+  transform: rotate(-45deg) scale(1.2) translateY(-2px);
+}
+#devil-chat-launcher:hover .devil-horns-right {
+  transform: rotate(45deg) scale(1.2) translateY(-2px);
+}
+
+/* Chat Panel */
+#devil-chat-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 360px;
+  height: 500px;
+  max-height: calc(100vh - 150px);
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 11, 16, 0.85);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 42, 95, 0.2);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 42, 95, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#devil-chat-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* Header */
+.devil-chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+  border-bottom: 1px solid rgba(255, 42, 95, 0.15);
+}
+
+.devil-chat-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.devil-avatar {
+  font-size: 26px;
+  animation: devilFloat 2s ease-in-out infinite;
+}
+
+@keyframes devilFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.devil-chat-title h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-naughty {
+  background: linear-gradient(90deg, #ff2a5f, #ff6b81);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.devil-status {
+  font-size: 11px;
+  color: #ff4757;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.devil-status::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ff4757;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff4757;
+  animation: pulseStatus 1.5s infinite;
+}
+
+@keyframes pulseStatus {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.devil-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.devil-close-btn:hover {
+  color: #ff2a5f;
+}
+
+/* Messages area */
+.devil-chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.devil-chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.devil-chat-messages::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+
+.devil-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 42, 95, 0.2);
+  border-radius: 4px;
+}
+
+.devil-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  animation: chatFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes chatFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.devil-msg.assistant-msg {
+  align-self: flex-start;
+}
+
+.devil-msg.user-msg {
+  align-self: flex-end;
+}
+
+.msg-bubble {
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 14px;
+}
+
+.assistant-msg .msg-bubble {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 42, 95, 0.15);
+  color: #f1f2f6;
+  border-bottom-left-radius: 2px;
+  box-shadow: inset 0 0 10px rgba(255, 42, 95, 0.02);
+}
+
+.user-msg .msg-bubble {
+  background: linear-gradient(135deg, #7c6df0 0%, #c471ed 100%);
+  color: #fff;
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 4px 12px rgba(124, 109, 240, 0.2);
+}
+
+/* Typing bubble loading indicator */
+.devil-typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px;
+  align-items: center;
+}
+
+.devil-typing-indicator span {
+  width: 6px;
+  height: 6px;
+  background: #ff2a5f;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: devilTyping 1.2s infinite alternate;
+}
+
+.devil-typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.devil-typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes devilTyping {
+  from { opacity: 0.3; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(-4px); }
+}
+
+/* Input Area */
+.devil-chat-input-area {
+  display: flex;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 42, 95, 0.15);
+  gap: 10px;
+}
+
+#devil-chat-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#devil-chat-input:focus {
+  border-color: rgba(255, 42, 95, 0.4);
+  box-shadow: 0 0 10px rgba(255, 42, 95, 0.1);
+}
+
+#devil-chat-send {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ff2a5f;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#devil-chat-send:hover {
+  background: #ff4757;
+  transform: scale(1.1);
+}

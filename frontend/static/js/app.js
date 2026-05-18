@@ -68,6 +68,18 @@ function navigate(route) {
   } else {
     stopThreatFeed();
   }
+
+  // Control Chatbot launcher visibility - Home Page Only!
+  const launcher = document.getElementById("devil-chat-launcher");
+  const panel = document.getElementById("devil-chat-panel");
+  if (launcher) {
+    if (route === 'home') {
+      launcher.style.display = 'flex';
+    } else {
+      launcher.style.display = 'none';
+      if (panel) panel.classList.remove("open");
+    }
+  }
 }
 window.navigate = navigate;
 
@@ -495,4 +507,121 @@ function runCinematicIntro() {
   setTimeout(() => {
     splash.classList.add("fade-out");
   }, 5000);
+}
+
+// ── Gaurdian Devil Sassy Chatbot Driver ──
+function toggleDevilChat() {
+  const panel = document.getElementById("devil-chat-panel");
+  if (!panel) return;
+  panel.classList.toggle("open");
+  if (panel.classList.contains("open")) {
+    document.getElementById("devil-chat-input").focus();
+    // Scroll messages to bottom
+    const msgs = document.getElementById("devil-chat-messages");
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+}
+
+// Click outside to close chatbot panel
+window.addEventListener("click", (e) => {
+  const panel = document.getElementById("devil-chat-panel");
+  const launcher = document.getElementById("devil-chat-launcher");
+  if (panel && panel.classList.contains("open")) {
+    if (!panel.contains(e.target) && !launcher.contains(e.target)) {
+      panel.classList.remove("open");
+    }
+  }
+});
+
+function handleDevilChatKey(e) {
+  if (e.key === "Enter") {
+    sendDevilChatMessage();
+  }
+}
+
+function sendDevilChatMessage() {
+  const input = document.getElementById("devil-chat-input");
+  const msgText = input.value.trim();
+  if (!msgText) return;
+
+  // Clear input
+  input.value = "";
+
+  // Append user message bubble
+  appendDevilMessage(msgText, "user");
+
+  // Show typing loader
+  const typingId = showDevilTypingIndicator();
+
+  // Send request to Flask backend
+  fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: msgText })
+  })
+  .then(res => res.json())
+  .then(data => {
+    // Remove typing loader
+    removeDevilTypingIndicator(typingId);
+    
+    // Append assistant sassy bubble
+    appendDevilMessage(data.reply || "Something went wrong in my dark brain. Try again!", "assistant");
+  })
+  .catch(err => {
+    console.error("Chat error:", err);
+    removeDevilTypingIndicator(typingId);
+    appendDevilMessage("I'm experiencing severe firewalls in my devil brain. Ask me again later!", "assistant");
+  });
+}
+
+function appendDevilMessage(text, sender) {
+  const msgsContainer = document.getElementById("devil-chat-messages");
+  if (!msgsContainer) return;
+
+  const msgDiv = document.createElement("div");
+  msgDiv.className = `devil-msg ${sender}-msg`;
+  
+  const bubbleDiv = document.createElement("div");
+  bubbleDiv.className = "msg-bubble";
+  
+  // Basic markdown-like bold to html formatting
+  let formattedText = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  bubbleDiv.innerHTML = formattedText;
+  
+  msgDiv.appendChild(bubbleDiv);
+  msgsContainer.appendChild(msgDiv);
+  
+  // Auto-scroll
+  msgsContainer.scrollTop = msgsContainer.scrollHeight;
+}
+
+let activeTypingIndicators = {};
+
+function showDevilTypingIndicator() {
+  const msgsContainer = document.getElementById("devil-chat-messages");
+  if (!msgsContainer) return null;
+
+  const id = "typing-" + Date.now();
+  
+  const msgDiv = document.createElement("div");
+  msgDiv.className = "devil-msg assistant-msg typing-msg";
+  msgDiv.id = id;
+  
+  const bubbleDiv = document.createElement("div");
+  bubbleDiv.className = "msg-bubble devil-typing-indicator";
+  bubbleDiv.innerHTML = "<span></span><span></span><span></span>";
+  
+  msgDiv.appendChild(bubbleDiv);
+  msgsContainer.appendChild(msgDiv);
+  msgsContainer.scrollTop = msgsContainer.scrollHeight;
+  
+  activeTypingIndicators[id] = msgDiv;
+  return id;
+}
+
+function removeDevilTypingIndicator(id) {
+  if (id && activeTypingIndicators[id]) {
+    activeTypingIndicators[id].remove();
+    delete activeTypingIndicators[id];
+  }
 }

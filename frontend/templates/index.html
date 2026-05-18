@@ -358,6 +358,38 @@
 
 <div class="toast" id="toast"></div>
 
+  <!-- Gaurdian Devil Chatbot Launcher -->
+  <div id="devil-chat-launcher" onclick="toggleDevilChat()">
+    <div class="devil-horns-left"></div>
+    <div class="devil-horns-right"></div>
+    <span class="chat-icon">👿</span>
+  </div>
+
+  <!-- Gaurdian Devil Sassy Chat Panel -->
+  <div id="devil-chat-panel" class="glass-card">
+    <div class="devil-chat-header">
+      <div class="devil-chat-title">
+        <span class="devil-avatar">👿</span>
+        <div>
+          <h4>Gaurdian Devil <span class="badge-naughty">Naughty AI</span></h4>
+          <span class="devil-status">Ready to roast you</span>
+        </div>
+      </div>
+      <button class="devil-close-btn" onclick="toggleDevilChat()">✕</button>
+    </div>
+    
+    <div class="devil-chat-messages" id="devil-chat-messages">
+      <div class="devil-msg assistant-msg">
+        <div class="msg-bubble">Sup, mortal. I'm the **Gaurdian Devil**. I protect your bank details while silently judging your cybersecurity knowledge. Ask me anything... if you dare! 😈</div>
+      </div>
+    </div>
+    
+    <div class="devil-chat-input-area">
+      <input type="text" id="devil-chat-input" placeholder="Type a message or ask to get roasted..." onkeydown="handleDevilChatKey(event)">
+      <button id="devil-chat-send" onclick="sendDevilChatMessage()">➔</button>
+    </div>
+  </div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="/static/js/app.js"></script>
 </body>
