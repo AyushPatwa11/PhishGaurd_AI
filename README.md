@@ -30,7 +30,7 @@ Ever looked at an email from your "CEO" asking for $50,000 in iTunes gift cards 
 <br>
 Witness an ultra-premium dark glass command center startup. On boot, glowing minimalist icons emerge one-by-one representing threat scanning, neural AI nodes, and shield guards. When loading completes, they dynamically expand, slide together, and merge into the unified brand emblem with a radial glimmer flash before revealing the active dashboard.
 <br><br>
-<img src="C:/Users/HP/.gemini/antigravity/brain/8c847944-fbd7-4b2f-8b47-8a9120543d7c/verify_cinematic_intro_1779124575515.webp" alt="Cinematic Loader Sequence" width="100%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
+<img src="./assets/cinematic_intro.webp" alt="Cinematic Loader Sequence" width="100%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
 </details>
 
 <details>
@@ -68,7 +68,7 @@ Immerse yourself completely into a digital command center. Includes background c
 <br>
 Say hello to your new favorite digital stalker! The Gaurdian Devil is a pinned floating chatbot with glowing red horns wiggling on hover. It represents a highly customizable local intelligence engine that answers perfectly about the site's Leaflet mapping, audio systems, and Random Forest classifier—while delivering hilarious, sassy, and mischievously naughty roasts to literally any message you throw at it.
 <br><br>
-<img src="C:/Users/HP/.gemini/antigravity/brain/8c847944-fbd7-4b2f-8b47-8a9120543d7c/chatbot_messages_verification_1779125282270.png" alt="Gaurdian Devil Sassy Chat interface" width="100%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
+<img src="./assets/chatbot.png" alt="Gaurdian Devil Sassy Chat interface" width="100%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);" />
 </details>
 
 ---
