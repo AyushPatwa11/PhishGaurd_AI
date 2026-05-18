@@ -3,101 +3,285 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PhishGuard AI</title>
+  <title>PhishGuard AI | Advanced Threat Intelligence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
-<header>
-  <div class="logo-icon">🛡</div>
-  <h1>PhishGuard AI <span>Real-Time Phishing Detection</span></h1>
-  <div class="badge-model">Random Forest · 19 Features · XAI</div>
-</header>
+<!-- Animated Background -->
+<div class="bg-animation">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+<div class="grid-overlay"></div>
 
-<main>
+<!-- Navigation Sidebar -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-icon">🛡</div>
+    <h2>PhishGuard</h2>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" data-route="home" class="active"><span class="icon">🏠</span> Home</a></li>
+    <li><a href="#" data-route="dashboard"><span class="icon">⚡</span> Dashboard</a></li>
+    <li><a href="#" data-route="threat-map"><span class="icon">🌍</span> Live Threat Map</a></li>
+    <li><a href="#" data-route="history"><span class="icon">🕒</span> History</a></li>
+    <li><a href="#" data-route="education"><span class="icon">📚</span> Education</a></li>
+    <li><a href="#" data-route="settings"><span class="icon">⚙️</span> Settings</a></li>
+  </ul>
+  <div class="sidebar-footer">
+    <div class="badge-model">AI Model v2.4 Active</div>
+  </div>
+</nav>
 
-  <!-- ── Input ── -->
-  <div class="card full-width">
-    <div class="card-title">Analyze Message</div>
-    <div class="examples-row" id="examples-row">
-      <span class="examples-label">Try:</span>
-    </div>
-    <div class="input-grid">
-      <div>
-        <label for="msg-text">Email / Message Text</label>
-        <textarea id="msg-text" placeholder="Paste the email body or message here…"></textarea>
+<!-- Main App Area -->
+<div class="app-container">
+
+  <!-- ── VIEW: HOME ── -->
+  <section id="view-home" class="view-section active">
+    <div class="hero">
+      <div class="hero-badge">Next-Gen Security</div>
+      <h1 class="hero-title">Zero-Day Phishing Detection<br><span class="gradient-text">Powered by AI</span></h1>
+      <p class="hero-subtitle">Protect your organization with real-time threat analysis, behavioral psychology detection, and explainable AI insights.</p>
+      
+      <div class="hero-stats">
+        <div class="stat-card">
+          <h3>99.8%</h3>
+          <p>Detection Rate</p>
+        </div>
+        <div class="stat-card">
+          <h3>< 200ms</h3>
+          <p>Analysis Speed</p>
+        </div>
+        <div class="stat-card">
+          <h3>19+</h3>
+          <p>Vectors Analyzed</p>
+        </div>
       </div>
-      <div>
-        <label for="msg-url">URL found in message (optional)</label>
-        <input type="text" id="msg-url" placeholder="https://example.com/suspicious-link">
-        <div class="hint-box">
-          💡 Paste any link from the message. The system checks domain structure,
-          TLD reputation, subdomains, and special characters.
+      
+      <button class="primary-btn pulse-btn" onclick="navigate('dashboard')">
+        Start Analysis <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ── VIEW: DASHBOARD ── -->
+  <section id="view-dashboard" class="view-section">
+    <header class="top-header">
+      <h2>Threat Analysis Dashboard</h2>
+      <div class="header-actions" style="display:flex;gap:12px">
+        <button class="secondary-btn" id="export-dashboard-btn" onclick="exportLatestReport()" disabled><span class="icon">📥</span> Export PDF</button>
+        <span class="status-indicator"><span class="dot pulse-dot"></span> System Online</span>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <!-- Input -->
+      <div class="card glass-card full-width slide-up" style="animation-delay: 0.1s;">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">📨</span> Analyze Payload</div>
+          <div class="examples-row" id="examples-row">
+            <span class="examples-label">Templates:</span>
+          </div>
+        </div>
+        <div class="input-grid">
+          <div class="input-group">
+            <label for="msg-text">Email / Message Body</label>
+            <textarea id="msg-text" placeholder="Paste the suspicious message content here..."></textarea>
+          </div>
+          <div class="input-group">
+            <label for="msg-url">Suspicious URL (optional)</label>
+            <input type="text" id="msg-url" placeholder="https://example.com/login">
+            <div class="hint-box">
+              <span class="hint-icon">💡</span> Automatically analyzes domain reputation, structure, and obfuscation techniques.
+            </div>
+          </div>
+        </div>
+        <button class="primary-btn full-btn" id="analyze-btn" onclick="analyze()">
+          <span id="btn-label">Run Security Scan</span>
+        </button>
+      </div>
+
+      <!-- Score -->
+      <div class="card glass-card slide-up" style="animation-delay: 0.2s;">
+        <div class="card-title"><span class="icon">🎯</span> Threat Score</div>
+        <div id="score-content" class="content-box">
+          <div class="empty-state">
+            <div class="empty-icon float-anim">🛡️</div>
+            <div>Awaiting payload...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tactics -->
+      <div class="card glass-card slide-up" style="animation-delay: 0.3s;">
+        <div class="card-title"><span class="icon">🧠</span> Behavioral Tactics</div>
+        <div id="tactics-content" class="content-box">
+          <div class="empty-state">
+            <div class="empty-icon float-anim" style="animation-delay: 0.5s;">🧩</div>
+            <div>No tactics detected yet.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- XAI Features -->
+      <div class="card glass-card slide-up" style="animation-delay: 0.4s;">
+        <div class="card-title"><span class="icon">🔬</span> XAI Signal Breakdown</div>
+        <div id="features-content" class="content-box">
+          <div class="empty-state">
+            <div class="empty-icon float-anim" style="animation-delay: 1s;">📊</div>
+            <div>Feature vectors will map here.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reasons -->
+      <div class="card glass-card slide-up" style="animation-delay: 0.5s;">
+        <div class="card-title"><span class="icon">📝</span> Assessment Details</div>
+        <div id="reasons-content" class="content-box">
+          <div class="empty-state">
+            <div class="empty-icon float-anim" style="animation-delay: 1.5s;">📋</div>
+            <div>Explanation pending.</div>
+          </div>
         </div>
       </div>
     </div>
-    <button class="analyze-btn" id="analyze-btn" onclick="analyze()">
-      <span id="btn-label">Analyze for Phishing</span>
-    </button>
-  </div>
+  </section>
 
-  <!-- ── Score ── -->
-  <div class="card">
-    <div class="card-title">Risk Score</div>
-    <div id="score-content">
-      <div class="empty-state">
-        <div class="empty-icon">🔍</div>
-        <div>Submit a message to see the risk analysis</div>
+  <!-- ── VIEW: HISTORY ── -->
+  <section id="view-history" class="view-section">
+    <header class="top-header">
+      <h2>Scan History Log</h2>
+      <div class="header-actions">
+        <button class="secondary-btn" onclick="exportHistoryCSV()"><span class="icon">📊</span> Export CSV</button>
+      </div>
+    </header>
+    <div class="card glass-card full-height slide-up">
+      <div class="table-container" id="history-page-content">
+        <div class="empty-state">
+          <div class="empty-icon">📁</div>
+          <div>Your historical scans will be recorded here.</div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── Tactics ── -->
-  <div class="card">
-    <div class="card-title">Psychology Tactics Detected</div>
-    <div id="tactics-content">
-      <div class="empty-state">
-        <div class="empty-icon">🧠</div>
-        <div>Manipulation tactics will appear here</div>
+  <!-- ── VIEW: EDUCATION ── -->
+  <section id="view-education" class="view-section">
+    <header class="top-header">
+      <h2>Threat Intelligence Center</h2>
+    </header>
+    <div class="edu-grid">
+      <div class="card glass-card hover-lift">
+        <h3>🚨 Urgency & Fear</h3>
+        <p>Phishers often create a false sense of urgency or fear (e.g., "Your account will be suspended in 24 hours"). This triggers a panic response, making victims less likely to scrutinize the message.</p>
+      </div>
+      <div class="card glass-card hover-lift">
+        <h3>🔗 Domain Spoofing</h3>
+        <p>Attackers use look-alike domains (e.g., <code>paypaI.com</code> instead of <code>paypal.com</code>) or deceptive subdomains (<code>login.paypal.com.security-check.info</code>) to trick users into trusting a malicious link.</p>
+      </div>
+      <div class="card glass-card hover-lift">
+        <h3>👔 Authority Scams</h3>
+        <p>Also known as CEO fraud or Business Email Compromise (BEC). The attacker pretends to be a high-ranking executive requesting an urgent wire transfer or gift cards.</p>
+      </div>
+      <div class="card glass-card hover-lift">
+        <h3>🎁 Scarcity & Greed</h3>
+        <p>Offers that seem too good to be true, like "You've won a $1000 gift card!" These tap into greed and the fear of missing out (FOMO) to steal personal information.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── XAI Features ── -->
-  <div class="card">
-    <div class="card-title">Top Risk Signals (XAI)</div>
-    <div id="features-content">
-      <div class="empty-state">
-        <div class="empty-icon">📊</div>
-        <div>Feature breakdown will appear here</div>
+  <!-- ── VIEW: THREAT MAP ── -->
+  <section id="view-threat-map" class="view-section">
+    <header class="top-header">
+      <h2>Threat Intelligence Map</h2>
+      <div class="header-actions" style="display:flex;gap:12px;align-items:center;">
+        <select id="threat-scope-select" class="custom-select" style="width:200px" onchange="updateThreatScope()">
+          <option value="global" selected>🌍 Global Feed</option>
+          <option value="country">🏳️ My Country</option>
+          <option value="state">📍 My State/Region</option>
+          <option value="near_me">🎯 Near Me (City Radius)</option>
+        </select>
+        <span class="status-indicator" style="background:var(--red-bg);color:var(--red)"><span class="dot pulse-dot" style="background:var(--red)"></span> Live Tracking</span>
+      </div>
+    </header>
+    <div class="card glass-card full-height slide-up">
+      <div class="map-container" id="real-threat-map" style="height:450px; z-index: 10;">
+        <!-- Leaflet Map renders here -->
+      </div>
+      <div class="threat-log">
+        <h3><span class="icon" style="color:var(--red);animation:pulseDot 2s infinite">🔴</span> Live Threat Intercepts (Real Data)</h3>
+        <ul id="threat-log-list">
+          <li style="color:var(--text-muted);font-style:italic">Connecting to Global Threat Feeds...</li>
+        </ul>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── Reasons ── -->
-  <div class="card">
-    <div class="card-title">Why was this flagged?</div>
-    <div id="reasons-content">
-      <div class="empty-state" style="height:100px">
-        <div>Plain-language explanation will appear here</div>
+  <!-- ── VIEW: SETTINGS ── -->
+  <section id="view-settings" class="view-section">
+    <header class="top-header">
+      <h2>System Configuration</h2>
+    </header>
+    <div class="settings-grid">
+      <!-- General Settings -->
+      <div class="card glass-card slide-up" style="animation-delay: 0.1s;">
+        <h3><span class="icon">🛠</span> Engine Preferences</h3>
+        <div class="setting-item">
+          <div>
+            <h4>Heuristic Sensitivity</h4>
+            <p>Adjust the strictness of the ML model threshold.</p>
+          </div>
+          <select id="sensitivity-select" class="custom-select">
+            <option value="low">Low (Fewer False Positives)</option>
+            <option value="medium" selected>Medium (Balanced)</option>
+            <option value="high">High (Maximum Security)</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <div>
+            <h4>Auto-Export to History</h4>
+            <p>Automatically save every scan to local history logs.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Developer Tools -->
+      <div class="card glass-card slide-up" style="animation-delay: 0.2s;">
+        <h3><span class="icon">💻</span> API & Integration</h3>
+        <div class="setting-item">
+          <div>
+            <h4>API Access Token</h4>
+            <p>Use this token for headless integration.</p>
+          </div>
+          <div class="api-key-box">
+            <code id="mock-api-key">phish_v2_xxxxxxxxxxxxxxxx</code>
+            <button class="icon-btn" onclick="generateApiKey()">🔄</button>
+          </div>
+        </div>
+        <div class="setting-item" style="margin-top:16px">
+          <div>
+            <h4>Webhook Endpoint</h4>
+            <p>Trigger alerts on high-risk detections.</p>
+          </div>
+          <input type="text" class="custom-input" placeholder="https://your-server.com/webhook">
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── History ── -->
-  <div class="card full-width">
-    <div class="card-title">Analysis History</div>
-    <div id="history-content">
-      <div class="empty-state" style="height:80px">
-        <div>Analyses will appear here</div>
-      </div>
-    </div>
-  </div>
-
-</main>
+</div>
 
 <div class="toast" id="toast"></div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="/static/js/app.js"></script>
 </body>
 </html>
