@@ -2,6 +2,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 
 from flask import Flask, send_from_directory
+from flask_cors import CORS
 from routes.api import api_bp
 
 # Serve frontend static files from ../frontend
@@ -12,6 +13,7 @@ app = Flask(
     static_folder=os.path.join(FRONTEND_DIR, "static"),
     static_url_path="/static"
 )
+CORS(app) # Enable CORS for all routes and origins
 
 # Register API blueprint
 app.register_blueprint(api_bp, url_prefix="/api")

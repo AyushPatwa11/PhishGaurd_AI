@@ -1,4 +1,6 @@
-const API = "";   // same origin (Flask serves both)
+const API = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? ""
+  : "https://phishguard-ai.onrender.com"; // TODO: Replace this URL with your actual Render backend URL
 
 let history = [];
 
@@ -554,7 +556,7 @@ function sendDevilChatMessage() {
   const typingId = showDevilTypingIndicator();
 
   // Send request to Flask backend
-  fetch("/api/chat", {
+  fetch(API + "/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: msgText })
