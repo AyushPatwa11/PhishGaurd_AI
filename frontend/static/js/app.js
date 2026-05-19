@@ -1,6 +1,6 @@
 const API = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? ""
-  : "https://phishgaurd-ai-hvdj.onrender.com/"; // Put your Render URL here
+  : "https://phishgaurd-ai-hvdj.onrender.com"; // Put your Render URL here
 
 
 let history = [];
