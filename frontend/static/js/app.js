@@ -1,6 +1,7 @@
 const API = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? ""
-  : "https://phishguard-ai.onrender.com"; // TODO: Replace this URL with your actual Render backend URL
+  : "https://phishgaurd-ai-hvdj.onrender.com/"; // Put your Render URL here
+
 
 let history = [];
 
@@ -626,4 +627,4 @@ function removeDevilTypingIndicator(id) {
     activeTypingIndicators[id].remove();
     delete activeTypingIndicators[id];
   }
-}
+}
