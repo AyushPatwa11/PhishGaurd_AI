@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/frontend/templates/index.html" },
+    { "source": "/static/(.*)", "destination": "/frontend/static/$1" }
+  ]
+}
