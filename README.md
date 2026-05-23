@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./assets/dashboard.png" alt="PhishGuard AI Dashboard Command Center" width="100%" style="border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);" />
-  <br><br>
+  
   <h1>🎣 PhishGuard AI <br> <span style="font-size: 18px; color: #7c6df0;">Because trusting every email is a terrible idea.</span></h1>
   
   <p>
