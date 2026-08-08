@@ -5,7 +5,7 @@
   
   <p>
     <strong>A shockingly smart, Glassmorphism-dripped AI that catches scammers before they catch your bank details.</strong>
-  </p>
+  </p> 
 
   <p>
     <a href="https://python.org"><img src="https://img.shields.io/badge/Powered%20by-Python%20%26%20Flask-black?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
